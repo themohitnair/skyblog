@@ -9,7 +9,7 @@ import uuid
 admin_router = APIRouter()
 
 @admin_router.post("/post/")
-async def post(post: PostBase = Body(...), session: Session = Depends(get_session)):
+async def create_post(post: PostBase = Body(...), session: Session = Depends(get_session)):
     try:
         new_post = Post(
             title=post.title,
@@ -21,7 +21,7 @@ async def post(post: PostBase = Body(...), session: Session = Depends(get_sessio
         raise e
 
 @admin_router.delete("/post/{post_id}")
-async def unpost(post_id: uuid.UUID, session: Session = Depends(get_session)):
+async def delete_post(post_id: uuid.UUID, session: Session = Depends(get_session)):
     try: 
         post = delete_post(post_id, session)
         return {"message": f"New post with ID: {post.id} deleted successfully"}
@@ -29,7 +29,7 @@ async def unpost(post_id: uuid.UUID, session: Session = Depends(get_session)):
         raise e
 
 @admin_router.patch("/post/{post_id}")
-async def modpost(post_id: uuid.UUID, post: PostBase = Body(...), session: Session = Depends(get_session)):
+async def modify_post(post_id: uuid.UUID, post: PostBase = Body(...), session: Session = Depends(get_session)):
     try:
         updated_post = update_post(post_id, post.title, post.content, session)
         return {"message": f"Post with ID: {updated_post.id} updated successfully"}

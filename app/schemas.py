@@ -12,4 +12,4 @@ class PostRead(PostBase):
     created_at: date
 
     class Config:
-        orm_mode = True
+        from_attributes = True
