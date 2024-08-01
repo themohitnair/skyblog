@@ -1,6 +1,0 @@
-*/.venv
-*/*.db
-*/.env
-*/__pycache__
-*/*/__pycache__
-.gitignore
