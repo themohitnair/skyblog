@@ -1,17 +1,11 @@
-from typing import Optional
-import uuid
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, TIMESTAMP, Column, LargeBinary
 from datetime import datetime
-from dataclasses import dataclass
-from datetime import date
-
-@dataclass
-class DateRange:
-    start_date: date
-    end_date: date
+from typing import Optional
+from sqlalchemy import func
 
 class Post(SQLModel, table=True):
-    id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
-    title: str = Field(nullable=False, unique=True, index=True)
-    content: str = Field(nullable=False)
-    created_at: date = Field(default_factory=date.today)
+    id: Optional[int] = Field(primary_key=True, default=None)
+    title: str = Field(unique=True, min_length=1, max_length=128, nullable=False)
+    content: str = Field(nullable=False, min_length=1)
+    thumbnail: bytes = Field(max_length=255, nullable=False)
+    created_at: datetime = Field(sa_column=Column(TIMESTAMP), default=func.now(), nullable=False)

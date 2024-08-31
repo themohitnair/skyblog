@@ -1,22 +1,14 @@
 from sqlmodel import SQLModel, create_engine, Session
-from contextlib import contextmanager
-import logging
+from skyblog.models import Post
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+db_file = "database.db"
+db_url = f"sqlite:///{db_file}"
 
-sqlite_filename = "database.db"
-sqlite_url = f"sqlite:///{sqlite_filename}"
-
-engine = create_engine(sqlite_url, echo=True)
-session = Session(engine)
+engine = create_engine(db_url, echo=True)
 
 def init_db():
-    try:
-        SQLModel.metadata.create_all(engine)
-        logger.info("Database and Tables created.")
-    except Exception as e:
-        logger.error(f"Error creating database and tables: {e}")
+    SQLModel.metadata.create_all(engine)
 
 def get_session():
-    return session
+    with Session(engine) as session:
+        yield session
