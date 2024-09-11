@@ -1,2 +1,2 @@
 # skyblog
-Skywalker's Blog (FastAPI + SQLite X Svelte)
+Skywalker's Blog (A self-hosted blogging solution made using Go)
