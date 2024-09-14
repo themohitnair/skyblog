@@ -19,13 +19,9 @@ func contains(slice []string, element string) bool {
 func Endpoints() *gin.Engine {
 	router := gin.Default()
 
-	router.GET("/", func(c *gin.Context) {
-
-	})
-
-	router.GET("/blog/:id", func(c *gin.Context) {
-		blogID := c.Param("id")
-		dirPath := fmt.Sprintf("./blogs/%s", blogID)
+	router.GET("/:blogName", func(c *gin.Context) {
+		blogName := c.Param("blogName")
+		dirPath := fmt.Sprintf("./blogs/%s", blogName)
 
 		metadata, err := fileops.ReadBlogMetadataYaml(dirPath)
 		if err != nil {
@@ -39,23 +35,21 @@ func Endpoints() *gin.Engine {
 			return
 		}
 
-		c.HTML(200, "blog.html", gin.H{
+		c.JSON(200, gin.H{
 			"Title":   metadata.Title,
 			"Author":  metadata.Author,
-			"Date":    metadata.Date.Format("January 2, 2006 15:04 MST"),
+			"Date":    metadata.Date,
 			"Content": htmlContent,
 		})
 	})
 
-	router.GET("/blogs/metadata", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		allMetadata, err := fileops.GetAllBlogMetadata()
 		if err != nil {
 			c.JSON(500, gin.H{"error": err.Error()})
 			return
 		}
-
 		c.JSON(200, allMetadata)
 	})
-
 	return router
 }

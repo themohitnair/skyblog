@@ -16,6 +16,43 @@ type BlogMetadata struct {
 	Date   time.Time `yaml:"date"`
 }
 
+func ParseDate(dateStr string) (time.Time, error) {
+	layout := "January 2, 2006 15:04 MST"
+	return time.Parse(layout, dateStr)
+}
+
+func ReadBlogMetadataYaml(dirPath string) (BlogMetadata, error) {
+	var metadata BlogMetadata
+
+	filePath := fmt.Sprintf("%s/metadata.yaml", dirPath)
+	data, err := os.ReadFile(filePath)
+	if err != nil {
+		return metadata, err
+	}
+
+	temp := struct {
+		Author string `yaml:"author"`
+		Title  string `yaml:"title"`
+		Date   string `yaml:"date"`
+	}{}
+	if err := yaml.Unmarshal(data, &temp); err != nil {
+		return metadata, err
+	}
+
+	parsedDate, err := ParseDate(temp.Date)
+	if err != nil {
+		return metadata, err
+	}
+
+	metadata = BlogMetadata{
+		Author: temp.Author,
+		Title:  temp.Title,
+		Date:   parsedDate,
+	}
+
+	return metadata, nil
+}
+
 func TraverseBlogs() []string {
 	files, err := os.ReadDir("./blogs")
 	if err != nil {
@@ -31,26 +68,6 @@ func TraverseBlogs() []string {
 		}
 	}
 	return blogDirs
-}
-
-func ReadBlogMetadataYaml(dirPath string) (*BlogMetadata, error) {
-	yamlFilePath := fmt.Sprintf("%s/metadata.yaml", dirPath)
-
-	file, err := os.Open(yamlFilePath)
-	if err != nil {
-		return nil, fmt.Errorf("error opening YAML file: %w", err)
-	}
-	defer file.Close()
-
-	var metadata BlogMetadata
-
-	decoder := yaml.NewDecoder(file)
-	err = decoder.Decode(&metadata)
-	if err != nil {
-		return nil, fmt.Errorf("error decoding YAML: %w", err)
-	}
-
-	return &metadata, nil
 }
 
 func MarkdownContentToHTML(dirPath string) (string, error) {
@@ -81,7 +98,7 @@ func GetAllBlogMetadata() ([]BlogMetadata, error) {
 			fmt.Printf("Error reading metadata for %s: %v\n", dir, err)
 			continue
 		}
-		allMetadata = append(allMetadata, *metadata)
+		allMetadata = append(allMetadata, metadata)
 	}
 
 	return allMetadata, nil
