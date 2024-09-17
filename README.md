@@ -1,2 +1,2 @@
 # skyblog
-Skywalker's Blog (A self-hosted blogging solution made using Go)
+Skywalker's Blog (Golang Approach)
