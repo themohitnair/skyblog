@@ -1,13 +1,141 @@
+@font-face {
+    font-family: 'Courier Prime';
+    src: url('/static/fonts/cprime.woff2') format('woff2');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('/static/fonts/ubuntu.woff2') format('woff2');
+    font-style: normal;
+}
+
+* {
+    font-family: 'Courier Prime';
+}
+
 body {
+    margin: 0;
+    padding: 0;
     background-color: black;
     color: yellow;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+a {
+    color: green;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 header {
+    background-color: black;
     text-align: center;
+    padding: 20px;
+    margin-top: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-header h1 {
+#blog-title {
     font-size: 40px;
+    font-family: monospace;
+}
+
+main {
+    padding: 20px;
+    display: block;
+    margin: auto;
+    min-height: calc(100vh - 140px);
+}
+
+.blog-desc {
+    margin: auto;
+    text-align: center;
+    width: 70%;
+    font-size: 20px;
+}
+
+.blog-list {
+    width: 70%;
+    margin: 20px auto;
+}
+
+.blog-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    padding: 15px;
+    border: 1px solid yellow;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.blog-link {
+    color: yellow;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.blog-link:hover {
+    text-decoration: underline;
+}
+
+.that-side {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.blog-meta-container {
+    margin-top: 5px;
+    color: green;
+    font-family: 'Courier Prime';
+}
+
+.read-more {
+    font-family: 'Ubuntu';
+    color: yellow;
+    padding: 10px;
+    margin-right: 0px;
+    background-color: black;
+    border: 1px solid yellow;
+    border-radius: 5px;
+}
+
+.read-more:hover {
+    background-color: yellow;
+    color: black;
+}
+
+footer {
+    background-color: black;
+    text-align: center;
+    padding: 10px;
+    position: sticky;
+    bottom: 0;
+}
+
+footer a {
+    color: yellow;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Courier Prime', monospace;
+    color: yellow;
+    margin: 0;
+}
+
+p {
+    margin: 0 0 10px 0;
 }

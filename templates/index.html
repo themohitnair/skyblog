@@ -10,17 +10,45 @@
     <!-- Header Section -->
     <header class="site-header">
         <h1 id="blog-title">skyblog</h1>
-        <p class="blog-description">Skywalker's Blog</p>
     </header>
 
-    <!-- Blog List -->
-    <ul class="blog-list">
-        {{ range .Blogs }}
-        <li class="blog-item">
-            <a class="blog-link" href="/{{ .DirectoryName }}">{{ .Title }}</a>
-            <span class="blog-meta">by <span class="blog-author">{{ .Author }}</span> on <time class="blog-date">{{ .Date.Format "January 2, 2006" }}</time></span>
-        </li>
-        {{ end }}
-    </ul>
+    <!-- Main content section -->
+    <main>
+        <div class="blog-desc">
+            <p>Hi, I'm Mohit Nair.</p>
+            <p>I'm a student at <b>Ramaiah Institute of Technology, Bangalore</b>, and currently pursuing my <b>Bachelors' Degree in Engineering</b> in the field of <b>Information Science and Engineering</b>. I'm passionate about building and creating. </p>
+            <p>
+                Here is my <a href="https://themohitnair.github.io/mohitnair">website</a>
+            </p>
+            <p>Thank you for visiting my blog.</p>
+        </div>
+        
+        <div class="blog-list">
+            {{ range .Blogs }}
+            <div class="blog-item-container">
+                <div class="this-side">
+                    <a class="blog-link" href="/{{ .DirectoryName }}">{{ .Title }}</a>
+                    <div class="blog-meta-container">
+                        <span class="blog-author">by {{ .Author }}</span>
+                        <span class="blog-date">on <time>{{ .Date.Format "January 2, 2006" }}</time></span>
+                    </div>
+                </div>
+                <div class="that-side">
+                    <a href="/{{ .DirectoryName }}" class="button-link">
+                        <button class="read-more" type="button">Read more</button>
+                    </a>
+                </div>                
+            </div>
+            {{ end }}
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <p>&copy; 2024 Skywalker. All rights reserved.</p>
+        <p>
+            Follow me on <a href="https://github.com/themohitnair">GitHub</a>.
+        </p>
+    </footer>
 </body>
 </html>
