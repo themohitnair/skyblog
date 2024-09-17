@@ -2,6 +2,7 @@ package app
 
 import (
 	"fmt"
+	"html/template"
 	"skyblog/fileops"
 
 	"github.com/gin-gonic/gin"
@@ -16,13 +17,25 @@ func contains(slice []string, element string) bool {
 	return false
 }
 
+func safeHTML(s string) template.HTML {
+	return template.HTML(s)
+}
+
 func Endpoints() *gin.Engine {
 	router := gin.Default()
+
+	router.Static("/static", "./static")
+
+	router.SetFuncMap(template.FuncMap{
+		"safe": safeHTML,
+	})
+
+	router.LoadHTMLGlob("templates/*")
 
 	router.GET("/:blogName", func(c *gin.Context) {
 		blogName := c.Param("blogName")
 		dirPath := fmt.Sprintf("./blogs/%s", blogName)
-
+		router.Static("/images", fmt.Sprintf("./blogs/%s/images", blogName))
 		metadata, err := fileops.ReadBlogMetadataYaml(dirPath)
 		if err != nil {
 			c.JSON(500, gin.H{"error": err.Error()})
@@ -35,7 +48,7 @@ func Endpoints() *gin.Engine {
 			return
 		}
 
-		c.JSON(200, gin.H{
+		c.HTML(200, "blog.html", gin.H{
 			"Title":   metadata.Title,
 			"Author":  metadata.Author,
 			"Date":    metadata.Date,
@@ -49,7 +62,10 @@ func Endpoints() *gin.Engine {
 			c.JSON(500, gin.H{"error": err.Error()})
 			return
 		}
-		c.JSON(200, allMetadata)
+
+		c.HTML(200, "index.html", gin.H{
+			"Blogs": allMetadata,
+		})
 	})
 	return router
 }
