@@ -11,17 +11,18 @@ import (
 )
 
 type BlogMetadata struct {
-	Author string    `yaml:"author"`
-	Title  string    `yaml:"title"`
-	Date   time.Time `yaml:"date"`
+	Author        string    `yaml:"author"`
+	Title         string    `yaml:"title"`
+	Date          time.Time `yaml:"date"`
+	DirectoryName string    `yaml:"-"`
 }
 
 func ParseDate(dateStr string) (time.Time, error) {
-	layout := "January 2, 2006 15:04 MST"
+	layout := "January 2, 2006 15:04 -0700 MST"
 	return time.Parse(layout, dateStr)
 }
 
-func ReadBlogMetadataYaml(dirPath string) (BlogMetadata, error) {
+func ReadBlogMetadataYaml(dirPath string, dirName string) (BlogMetadata, error) {
 	var metadata BlogMetadata
 
 	filePath := fmt.Sprintf("%s/metadata.yaml", dirPath)
@@ -45,9 +46,10 @@ func ReadBlogMetadataYaml(dirPath string) (BlogMetadata, error) {
 	}
 
 	metadata = BlogMetadata{
-		Author: temp.Author,
-		Title:  temp.Title,
-		Date:   parsedDate,
+		Author:        temp.Author,
+		Title:         temp.Title,
+		Date:          parsedDate,
+		DirectoryName: dirName,
 	}
 
 	return metadata, nil
@@ -93,7 +95,7 @@ func GetAllBlogMetadata() ([]BlogMetadata, error) {
 
 	for _, dir := range blogDirs {
 		dirPath := filepath.Join("./blogs", dir)
-		metadata, err := ReadBlogMetadataYaml(dirPath)
+		metadata, err := ReadBlogMetadataYaml(dirPath, dir)
 		if err != nil {
 			fmt.Printf("Error reading metadata for %s: %v\n", dir, err)
 			continue

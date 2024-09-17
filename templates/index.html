@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h1>Blog Index</h1>
+    <header>
+        <h1>skyblog</h1>
+        Skywalker's Blog
+    </header>
     <ul>
         {{ range .Blogs }}
-        <li><a href="/{{ .Title | urlquery }}">{{ .Title }}</a> by {{ .Author }} on {{ .Date.Format "January 2, 2006" }}</li>
+        <li><a href="/{{ .DirectoryName }}">{{ .Title }}</a> by {{ .Author }} on {{ .Date.Format "January 2, 2006" }}</li>
         {{ end }}
     </ul>
 </body>

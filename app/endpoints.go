@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"skyblog/fileops"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -25,6 +26,7 @@ func Endpoints() *gin.Engine {
 	router := gin.Default()
 
 	router.Static("/static", "./static")
+	router.Static("/blogs", "./blogs")
 
 	router.SetFuncMap(template.FuncMap{
 		"safe": safeHTML,
@@ -35,8 +37,7 @@ func Endpoints() *gin.Engine {
 	router.GET("/:blogName", func(c *gin.Context) {
 		blogName := c.Param("blogName")
 		dirPath := fmt.Sprintf("./blogs/%s", blogName)
-		router.Static("/images", fmt.Sprintf("./blogs/%s/images", blogName))
-		metadata, err := fileops.ReadBlogMetadataYaml(dirPath)
+		metadata, err := fileops.ReadBlogMetadataYaml(dirPath, blogName)
 		if err != nil {
 			c.JSON(500, gin.H{"error": err.Error()})
 			return
@@ -48,11 +49,14 @@ func Endpoints() *gin.Engine {
 			return
 		}
 
+		updatedHTMLContent := strings.ReplaceAll(htmlContent, "src=\"images/", fmt.Sprintf("src=\"./blogs/%s/images/", blogName))
+
 		c.HTML(200, "blog.html", gin.H{
-			"Title":   metadata.Title,
-			"Author":  metadata.Author,
-			"Date":    metadata.Date,
-			"Content": htmlContent,
+			"Title":         metadata.Title,
+			"Author":        metadata.Author,
+			"Date":          metadata.Date,
+			"Content":       updatedHTMLContent,
+			"DirectoryName": blogName,
 		})
 	})
 
