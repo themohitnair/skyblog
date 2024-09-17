@@ -7,13 +7,19 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <header>
-        <h1>skyblog</h1>
-        Skywalker's Blog
+    <!-- Header Section -->
+    <header class="site-header">
+        <h1 id="blog-title">skyblog</h1>
+        <p class="blog-description">Skywalker's Blog</p>
     </header>
-    <ul>
+
+    <!-- Blog List -->
+    <ul class="blog-list">
         {{ range .Blogs }}
-        <li><a href="/{{ .DirectoryName }}">{{ .Title }}</a> by {{ .Author }} on {{ .Date.Format "January 2, 2006" }}</li>
+        <li class="blog-item">
+            <a class="blog-link" href="/{{ .DirectoryName }}">{{ .Title }}</a>
+            <span class="blog-meta">by <span class="blog-author">{{ .Author }}</span> on <time class="blog-date">{{ .Date.Format "January 2, 2006" }}</time></span>
+        </li>
         {{ end }}
     </ul>
 </body>

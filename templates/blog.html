@@ -7,11 +7,20 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h1>{{ .Title }}</h1>
-    <p><strong>By:</strong> {{ .Author }}</p>
-    <p><strong>Date:</strong> {{ .Date }}</p>
-    <div class="blog-content">
-        {{ .Content | safe }}
-    </div>
+    <!-- Blog Post Container -->
+    <article class="blog-post">
+        <header class="post-header">
+            <h1 class="post-title">{{ .Title }}</h1>
+            <p class="post-meta">
+                <strong>By:</strong> <span class="post-author">{{ .Author }}</span>
+                <strong>Date:</strong> <time class="post-date">{{ .Date }}</time>
+            </p>
+        </header>
+
+        <!-- Blog Content -->
+        <section class="post-content">
+            {{ .Content | safe }}
+        </section>
+    </article>
 </body>
 </html>
