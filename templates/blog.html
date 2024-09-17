@@ -9,7 +9,8 @@
 <body>
     <!-- Blog Post Container -->
     <article class="blog-post">
-        <header class="post-header">
+        <!-- Sticky Post Header -->
+        <header class="post-header" style="position: sticky; top: 0; z-index: 1000;">
             <h1 class="post-title">{{ .Title }}</h1>
             <p class="post-meta">
                 <span class="post-author">{{ .Author }}</span>
@@ -17,7 +18,7 @@
             </p>
         </header>
 
-        <!-- Blog Content -->
+        <!-- Blog Content Section -->
         <section class="post-content">
             {{ .Content | safe }}
         </section>

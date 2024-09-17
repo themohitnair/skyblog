@@ -10,8 +10,9 @@
     font-style: normal;
 }
 
+/* Global styles */
 * {
-    font-family: 'Courier Prime';
+    font-family: 'Courier Prime', monospace;
 }
 
 body {
@@ -22,7 +23,7 @@ body {
 }
 
 a {
-    color: green;
+    color: #8AB9F1;
     text-decoration: none;
 }
 
@@ -30,6 +31,7 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Header for index.html */
 header {
     background-color: black;
     text-align: center;
@@ -45,6 +47,7 @@ header {
     font-family: monospace;
 }
 
+/* Main content section for index.html */
 main {
     padding: 20px;
     display: block;
@@ -52,6 +55,7 @@ main {
     min-height: calc(100vh - 140px);
 }
 
+/* Blog list section */
 .blog-desc {
     margin: auto;
     text-align: center;
@@ -113,6 +117,7 @@ main {
     color: black;
 }
 
+/* Footer for index.html */
 footer {
     background-color: black;
     text-align: center;
@@ -130,12 +135,92 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Typography for post titles, headings */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Courier Prime', monospace;
     color: yellow;
     margin: 0;
 }
 
+/* Paragraph styles */
 p {
     margin: 0 0 10px 0;
+}
+
+/* Blog post header for blog.html */
+.post-header {
+    background-color: black;
+    padding: 20px;
+    border-bottom: 1px solid yellow;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.post-title {
+    font-size: 40px;
+    color: yellow;
+    margin: 0;
+    font-family: 'Courier Prime', monospace;
+}
+
+.post-meta {
+    color: green;
+    font-family: 'Courier Prime';
+}
+
+.post-author {
+    font-weight: bold;
+}
+
+.post-date {
+    font-style: italic;
+}
+
+/* Blog content section for blog.html */
+.post-content {
+    margin: auto;
+    width: 70%;
+    padding: 20px;
+    color: yellow;
+}
+
+.post-content img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Code block styling */
+.post-content pre {
+    background-color: #1e1e1e; 
+    border: 1px solid #3e3e3e;
+    border-radius: 5px;
+    padding: 15px;
+    overflow-x: auto;
+    color: #f5f5f5; 
+}
+
+.post-content code {
+    background-color: #1e1e1e; 
+    color: #f5f5f5; 
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+pre code {
+    display: block;
+    padding: 0;
+    color: #F9FAFB;
+}
+
+/* Blockquote styling */
+.post-content blockquote {
+    border-left: 4px solid yellow;
+    padding-left: 10px;
+    margin: 0;
+    color: #F9FAFB;
+    font-style: italic;
 }
