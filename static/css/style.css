@@ -224,3 +224,8 @@ pre code {
     color: #F9FAFB;
     font-style: italic;
 }
+
+.error-message {
+    margin: auto;
+    text-align: center;
+}

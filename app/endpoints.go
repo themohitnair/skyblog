@@ -3,6 +3,7 @@ package app
 import (
 	"fmt"
 	"html/template"
+	"os"
 	"skyblog/fileops"
 	"strings"
 
@@ -55,15 +56,25 @@ func Endpoints() *gin.Engine {
 	router.GET("/:blogName", func(c *gin.Context) {
 		blogName := c.Param("blogName")
 		dirPath := fmt.Sprintf("./blogs/%s", blogName)
+
+		if _, err := os.Stat(dirPath); os.IsNotExist(err) {
+			c.HTML(404, "404.html", gin.H{
+				"Message": "Oops! The blog you are looking for does not exist.",
+			})
+			return
+		}
+
 		metadata, err := fileops.ReadBlogMetadataYaml(dirPath, blogName)
 		if err != nil {
-			c.JSON(500, gin.H{"error": err.Error()})
+			c.HTML(404, "404.html", gin.H{
+				"Message": "Oops! The blog you are looking for does not exist.",
+			})
 			return
 		}
 
 		htmlContent, err := fileops.MarkdownContentToHTML(dirPath)
 		if err != nil {
-			c.JSON(500, gin.H{"error": err.Error()})
+			c.HTML(500, "500.html", gin.H{"error": err.Error()})
 			return
 		}
 
@@ -83,5 +94,6 @@ func Endpoints() *gin.Engine {
 			"Message": "Oops! The page you are looking for does not exist.",
 		})
 	})
+
 	return router
 }
