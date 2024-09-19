@@ -25,6 +25,9 @@
         </div>
         
         <div class="blog-list">
+            {{ if .NoBlogs }}
+            <p>No blogs available at the moment. Check back later!</p>
+            {{ else }}
             {{ range .Blogs }}
             <div class="blog-item-container">
                 <div class="this-side">
@@ -41,8 +44,9 @@
                 </div>                
             </div>
             {{ end }}
+            {{ end }}
         </div>
-    </main>
+    </main>       
 
     <!-- Footer Section -->
     <footer class="site-footer">
