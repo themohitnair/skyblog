@@ -80,6 +80,8 @@ skyblog/
 
 ## Example
 
+Add a directory called 1-fastapi-for-noobs inside the blogs directory in the project root. Create a metadata.yaml, content.md and and images directory (All this has already been done for you).
+
 1. Metadata Example:
     ```yaml
     author: Mohit Nair
@@ -142,3 +144,17 @@ skyblog/
 You might see something like this:
 ![index.html](README_assets/index.png)
 ![blog.html](README_assets/blog.gif)
+
+
+## Tweaks
+
+---
+
+### Non-essential directories.
+You may delete/remove files/directories such as README.md, LICENSE, README_assets, 1-fastapi-for-noobs (inside blogs directory).
+
+### Favicon
+You can add a favicon to the /static/assets directory. You have to change the HTML if you change the name of the favicon or the file format (currently svg).
+
+### Fonts and CSS
+CSS has been drafted in a variable-esque form so that tweaking can be done at one place in the CSS file. The CSS file handles styles in all three HTML templates.
