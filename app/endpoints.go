@@ -49,7 +49,8 @@ func Endpoints() *gin.Engine {
 		}
 
 		c.HTML(200, "index.html", gin.H{
-			"Blogs": allMetadata,
+			"Blogs":   allMetadata,
+			"NoBlogs": len(allMetadata) == 0,
 		})
 	})
 
