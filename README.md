@@ -148,8 +148,6 @@ You might see something like this:
 
 ## Tweaks
 
----
-
 ### Non-essential directories.
 You may delete/remove files/directories such as README.md, LICENSE, README_assets, 1-fastapi-for-noobs (inside blogs directory).
 
@@ -158,3 +156,9 @@ You can add a favicon to the /static/assets directory. You have to change the HT
 
 ### Fonts and CSS
 CSS has been drafted in a variable-esque form so that tweaking can be done at one place in the CSS file. The CSS file handles styles in all three HTML templates.
+
+### HTML
+The HTML consists of several comments that direct and indicate to what the tags are for. Feel free to edit them.
+
+
+## Hosting and Deployment
