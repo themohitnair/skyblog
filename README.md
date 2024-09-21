@@ -141,21 +141,4 @@ skyblog/
 
 You might see something like this:
 ![index.html](README_assets/index.png)
-![blog.html](README_assets/blog.webm)
-
-## Deployment
-
-### Self-Hosting
-To self-host, you can deploy the server to any cloud provider, such as AWS, DigitalOcean, or your own Linux/Windows server.
-
-1. **Build the Go application:**
-   ```bash
-   go build -o skyblog main.go
-   ```
-
-2. **Run the executable:**
-   ```bash
-   ./skyblog
-   ```
-
----
+![blog.html](README_assets/blog.gif)
