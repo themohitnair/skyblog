@@ -149,7 +149,7 @@ You might see something like this:
 ## Tweaks
 
 ### Non-essential directories.
-You may delete/remove files/directories such as README.md, LICENSE, README_assets, 1-fastapi-for-noobs (inside blogs directory).
+You may delete/remove files/directories such as README.md, LICENSE, README_assets, and 1-fastapi-for-noobs (inside blogs directory).
 
 ### Favicon
 You can add a favicon to the /static/assets directory. You have to change the HTML if you change the name of the favicon or the file format (currently svg).
