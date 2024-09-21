@@ -124,7 +124,6 @@ skyblog/
 ```
 
 
-
 ## Running the Project
 
 1. **Starting the Server:**
@@ -139,6 +138,10 @@ skyblog/
    ```
    http://localhost:8000/{blog-name}
    ```
+
+You might see something like this:
+![index.html](README_assets/index.png)
+![blog.html](README_assets/blog.webm)
 
 ## Deployment
 
