@@ -159,6 +159,3 @@ CSS has been drafted in a variable-esque form so that tweaking can be done at on
 
 ### HTML
 The HTML consists of several comments that direct and indicate to what the tags are for. Feel free to edit them.
-
-
-## Hosting and Deployment
