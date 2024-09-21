@@ -88,7 +88,7 @@ skyblog/
     ```
 
 2. Content Example:
-   ```markdown
+```markdown
    # FastAPI: Python's Rising Star in Web Development
    
    ---
@@ -121,7 +121,7 @@ skyblog/
    FastAPI's automatic documentation makes it easy for developers to understand and interact with your API, significantly reducing the time spent on creating and maintaining API documentation.
    
    Ready to dive in? Check out the [official FastAPI documentation](https://fastapi.tiangolo.com/) to get started on your FastAPI journey!
-   ```
+```
 
 
 
