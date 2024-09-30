@@ -79,6 +79,7 @@ main {
 /* Blog list section */
 .blog-desc {
     margin: auto;
+    margin-bottom: 50px;
     text-align: center;
     width: var(--post-width);
     font-size: var(--font-size);
@@ -135,24 +136,6 @@ main {
 .read-more:hover {
     background-color: var(--text-color);
     color: var(--bg-color);
-}
-
-/* Footer for index.html */
-footer {
-    background-color: var(--bg-color);
-    text-align: center;
-    padding: var(--padding-small);
-    position: sticky;
-    bottom: 0;
-}
-
-footer a {
-    color: var(--text-color);
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
 }
 
 /* Typography for post titles, headings */
